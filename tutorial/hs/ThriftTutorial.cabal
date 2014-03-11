@@ -30,7 +30,7 @@ Executable HaskellServer
   Hs-Source-Dirs:
     ., ../gen-hs/
   Build-Depends:
-    base >=4, network, ghc-prim, containers, Thrift
+    base >=4, network, ghc-prim, containers, thrift, vector, unordered-containers, text, hashable, bytestring
   ghc-options:
     -fglasgow-exts
   Extensions:
@@ -41,7 +41,7 @@ Executable HaskellClient
   Hs-Source-Dirs:
     ., ../gen-hs/
   Build-Depends:
-    base >=4, network, ghc-prim, containers, Thrift
+    base >=4, network, ghc-prim, containers, thrift, vector
   ghc-options:
     -fglasgow-exts
   Extensions:
