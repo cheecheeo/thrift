@@ -249,7 +249,7 @@ string t_hs_generator::hs_imports() {
       "                 (.), (&&), (||), (==), (++), ($), (-) )\n"
       "\n"
       "import Control.Exception\n"
-      "import Data.ByteString.Lazy\n"
+      "import qualified Data.ByteString.Lazy as BL\n"
       "import Data.Hashable\n"
       "import Data.Int\n"
       "import Data.Text.Lazy ( Text )\n"
