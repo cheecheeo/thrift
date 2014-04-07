@@ -83,7 +83,7 @@ instance Calculator_Iface CalculatorHandler where
     let logEntry = SharedStruct (Just logid) (Just (fromString $ show $ val))
     modifyMVar_ (mathLog self) $ return .(M.insert logid logEntry)
 
-    return val
+    return $! val
 
    where
      -- stupid dynamic languages f'ing it up

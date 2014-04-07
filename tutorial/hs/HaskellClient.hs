@@ -30,6 +30,7 @@ import Thrift.Transport
 import Thrift.Transport.Handle
 import Thrift.Server
 
+import Control.Exception
 import Data.Maybe
 import Data.Text.Lazy
 import Text.Printf
@@ -53,9 +54,8 @@ main = do
                     f_Work_comment = Nothing
                   }
 
-  -- TODO - get this one working
-  --catch (Client.calculate client 1 work) (\except ->
-  --     printf "InvalidOp %s" (show except))
+  catch (printf "1/0=%d\n" =<< Client.calculate client 1 work)
+        (\e -> printf "InvalidOperation %s\n" (show (e :: InvalidOperation)))
 
 
   let work = Work { f_Work_op = Just SUBTRACT,
