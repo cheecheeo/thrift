@@ -35,7 +35,11 @@ import Data.String
 import Data.Maybe
 import Text.Printf
 import Control.Exception (throw)
+import Control.Error.Util
 import Control.Concurrent.MVar
+import Control.Monad
+import Control.Monad.Trans.Maybe
+import Control.Monad.Trans.Class
 import qualified Data.Map as M
 import Data.Map ((!))
 import Data.Monoid
@@ -60,41 +64,36 @@ instance Calculator_Iface CalculatorHandler where
     printf "add(%d,%d)\n" (fromJust n1) (fromJust n2)
     return ((fromJust n1)+(fromJust n2))
 
-  calculate self mlogid mwork = do
-    printf "calculate(%d, %s)\n" logid (show work)
+  calculate self mlogid mwork = maybeT (fail "Nothing in calculate") return $ do
+    logid <- hoistMaybe mlogid
+    work <- hoistMaybe mwork
+    lift $ printf "calculate(%d, %s)\n" logid (show work)
 
-    let val = case op work of
+    num1 <- hoistMaybe $ f_Work_num1 work
+    num2 <- hoistMaybe $ f_Work_num2 work
+    op <- hoistMaybe $ f_Work_op work
+
+    val <- case op of
                 ADD ->
-                    num1 work + num2 work
+                    return $ num1 + num2
                 SUBTRACT ->
-                    num1 work - num2 work
+                    return $ num1 - num2
                 MULTIPLY ->
-                    num1 work * num2 work
+                    return $ num1 * num2
                 DIVIDE ->
-                    if num2 work == 0 then
+                    if num2 == 0 then
                         throw $
                               InvalidOperation {
-                                 f_InvalidOperation_what = Just $ fromIntegral $ fromEnum $ op work,
+                                 f_InvalidOperation_what = Just $ fromIntegral $ fromEnum $ op,
                                  f_InvalidOperation_why = Just "Cannot divide by 0"
                                             }
                     else
-                        num1 work `div` num2 work
+                        return $ num1 `div` num2
 
     let logEntry = SharedStruct (Just logid) (Just (fromString $ show $ val))
-    modifyMVar_ (mathLog self) $ return .(M.insert logid logEntry)
+    lift $ modifyMVar_ (mathLog self) $ return .(M.insert logid logEntry)
 
-    return $! val
-
-   where
-     -- stupid dynamic languages f'ing it up
-     num1 = fromJust . f_Work_num1
-     num2 = fromJust . f_Work_num2
-     op = fromJust . f_Work_op
-     logid = fromJust mlogid
-     work = fromJust mwork
-
-
-    --return val
+    return val
 
   zip _ =
     print "zip()"
