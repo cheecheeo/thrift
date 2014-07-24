@@ -27,7 +27,7 @@ EXTRA_DIST = \
 
 all-local:
 	$(CABAL) configure $(CABAL_CONFIGURE_FLAGS)
-	$(CABAL) build
+	$(CABAL) install -O2
 
 install-exec-hook:
 	$(CABAL) install
