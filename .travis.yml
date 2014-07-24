@@ -35,9 +35,9 @@ env:
 
  # Build All
  # TODO: fix these languages
- - CONFIG="--without-erlang --without-haskell --without-python --without-go --without-lua"
+ - CONFIG="--without-erlang --without-python --without-go --without-lua"
 
- 
+
 matrix:
   include:
     - compiler: gcc
