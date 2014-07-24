@@ -26,7 +26,6 @@ EXTRA_DIST = \
   src
 
 all-local:
-	$(CABAL) configure $(CABAL_CONFIGURE_FLAGS)
 	$(CABAL) install -O2
 
 install-exec-hook:
