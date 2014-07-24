@@ -33,6 +33,9 @@ env:
  # Small Set
  - CONFIG="--without-erlang --without-haskell --without-python --without-go --without-lua --without-d --without-ruby --without-nodejs --without-java"
 
+ # Small Set + Haskell
+ - CONFIG="--without-erlang --without-python --without-go --without-lua --without-d --without-ruby --without-nodejs --without-java" GHCVER=7.8.3
+
  # Build All
  # TODO: fix these languages
  - CONFIG="--without-erlang --without-python --without-go --without-lua" GHCVER=7.8.3
