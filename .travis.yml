@@ -35,10 +35,14 @@ env:
 
  # Small Set + Haskell
  - CONFIG="--without-erlang --without-python --without-go --without-lua --without-d --without-ruby --without-nodejs --without-java" GHCVER=7.8.3
+ - CONFIG="--without-erlang --without-python --without-go --without-lua --without-d --without-ruby --without-nodejs --without-java" GHCVER=7.6.3
+ - CONFIG="--without-erlang --without-python --without-go --without-lua --without-d --without-ruby --without-nodejs --without-java" GHCVER=7.4.2
 
  # Build All
  # TODO: fix these languages
  - CONFIG="--without-erlang --without-python --without-go --without-lua" GHCVER=7.8.3
+ - CONFIG="--without-erlang --without-python --without-go --without-lua" GHCVER=7.6.3
+ - CONFIG="--without-erlang --without-python --without-go --without-lua" GHCVER=7.4.2
 
 
 matrix:
@@ -64,9 +68,6 @@ matrix:
 ## Default build sequence:
 before_install:
  - sh contrib/installDependencies.sh 1> /dev/null;
- - travis_retry sudo add-apt-repository -y ppa:hvr/ghc
- - travis_retry sudo apt-get update
- - travis_retry sudo apt-get install cabal-install-1.20 ghc-$GHCVER # see note about happy/alex
  - export PATH=/opt/ghc/$GHCVER/bin:/opt/cabal/1.20/bin:$PATH
  - cabal update
 
