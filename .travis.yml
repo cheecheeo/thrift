@@ -35,14 +35,10 @@ env:
 
  # C & C++ & Haskell (for some reason qt4 is required)
  - CONFIG="--without-csharp --without-java --without-erlang --without-nodejs --without-lua --without-python --without-perl --without-php --without-php-extension --without-ruby --without-go --without-d" GHCVER=7.8.3
- - CONFIG="--without-csharp --without-java --without-erlang --without-nodejs --without-lua --without-python --without-perl --without-php --without-php-extension --without-ruby --without-go --without-d" GHCVER=7.6.3
- - CONFIG="--without-csharp --without-java --without-erlang --without-nodejs --without-lua --without-python --without-perl --without-php --without-php-extension --without-ruby --without-go --without-d" GHCVER=7.4.2
 
  # Build All
  # TODO: fix these languages
  - CONFIG="--without-erlang --without-python --without-go --without-lua" GHCVER=7.8.3
- - CONFIG="--without-erlang --without-python --without-go --without-lua" GHCVER=7.6.3
- - CONFIG="--without-erlang --without-python --without-go --without-lua" GHCVER=7.4.2
 
 
 matrix:
