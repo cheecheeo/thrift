@@ -26,7 +26,7 @@ EXTRA_DIST = \
   src
 
 all-local:
-	$(CABAL) install -O2
+	$(CABAL) install
 
 install-exec-hook:
 	$(CABAL) install
