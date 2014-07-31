@@ -33,5 +33,13 @@ check: stubs
 	sh run-test.sh Include
 	sh run-test.sh NameConflictTest
 
+cross: stubs
+	ghc -igen-hs TestServer.hs
+	ghc -igen-hs TestClient.hs
+
+cross: stubs
+	ghc -igen-hs TestServer.hs
+	ghc -igen-hs TestClient.hs
+
 clean-local:
 	$(RM) -r gen-hs

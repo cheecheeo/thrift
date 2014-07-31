@@ -16,4 +16,4 @@ main = do
   P.putStrLn "Values:"
   P.print ([JUST, TRUE, FALSE] :: [Maybe])
   P.print ([LEFT, RIGHT] :: [Either])
-  P.print (Problem_ (P.Just P.True) (P.Just P.False))
+  P.print (Problem_ P.True P.False)
