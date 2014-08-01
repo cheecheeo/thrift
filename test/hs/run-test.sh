@@ -63,6 +63,7 @@ if [ ! -e $TEST_SOURCE_FILE ]; then
     exit 3
 fi
 
+#TODO(John Chee) delete this, the makefile does the binding generation
 # Actually run the server bits
 printf "Generating bindings... \n"
 $THRIFT_BIN --gen hs $THRIFT_FILE
